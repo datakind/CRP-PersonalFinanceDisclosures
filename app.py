@@ -1,16 +1,17 @@
 import os
 from flask import Flask, render_template
 from algoliasearch import algoliasearch
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
+
 
 app = Flask(__name__)
-APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
-dotenv_path = os.path.join(APP_ROOT, '.env')
-load_dotenv(dotenv_path)
+load_dotenv(find_dotenv())
 
-algolia_api_key = os.getenv('ALGOLIA_API_KEY')
-algolia_app_key = os.getenv('ALGOLIA_APP_ID')
+algolia_api_key = os.environ.get('ALGOLIA_API_KEY')
+algolia_app_key = os.environ.get('ALGOLIA_APP_ID')
+
 client = algoliasearch.Client(algolia_app_key, algolia_api_key)
+index = client.init_index('master_disclosure')
 
 @app.route('/')
 def index():

@@ -41,18 +41,6 @@
       </div>
 
       <div id="hits">
-        <script type="text/html" id="hit-template">
-          <div class="hit">
-            <div class="hit-image">
-              <img src="{{image}}" alt="{{name}}">
-            </div>
-            <div class="hit-content">
-              <h3 class="hit-price">${{price}}</h3>
-              <h2 class="hit-name">{{{_highlightResult.name.value}}}</h2>
-              <p class="hit-description">{{{_highlightResult.description.value}}}</p>
-            </div>
-          </div>
-        </script>
       </div>
       <div id="pagination"></div>
 
@@ -70,6 +58,7 @@
     <script src="../static/js/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="../static/js/app.js"></script>
   </body>
 </html>
