@@ -1,0 +1,43 @@
+body{
+  margin-top: 80px;
+}
+.navbar{
+  /*padding: 0 1rem;*/
+  background-color: #fff !important;
+}
+.jumbotron{
+  border-radius: 0;
+  padding: 6rem 2rem;
+  background: linear-gradient(
+      rgba(42, 48, 78, 0.8),
+      rgba(42, 48, 78, 0.8)
+      /*rgba(61, 98, 153, 0.8),
+      rgba(61, 98, 153, 0.8)*/
+    ),
+    url("../img/capitol.png") center center no-repeat;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.heading{
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  font-size: 40px;
+  line-height: 42px;
+}
+.search-box{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.form-control, .btn{
+  border-radius: 0;
+  line-height: 2;
+}
+.btn{
+  background-color: #00857e;
+  border-color:#00857e;
+  color: #fff;
+}
