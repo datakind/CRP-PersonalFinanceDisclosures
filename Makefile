@@ -6,7 +6,7 @@ build: ## Build the container
 	docker build -t crp-goal3 .
 
 run: ## Run container on port configured in `config.env`
-	docker run  -it -p 5000:5000 crp-goal3 
+	docker run  -v $(shell pwd):/usr/src/app -it -p 5000:5000 crp-goal3 
 
 
 up: build run ## Run container on port configured in `config.env` (Alias to run)
