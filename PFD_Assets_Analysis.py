@@ -50,11 +50,13 @@ pdf_assets = pd.read_csv('PDFAssets.txt', encoding='ISO-8859-1', low_memory=Fals
                          dtype=pdf_assets_dtypes)
 pdf_assets.columns = pdf_assets_headers
 pdf_assets['AssetValue'] = pdf_assets['AssetValue'].apply(str).apply(lambda x: x.strip())
-print(len(pdf_assets))
+# print(len(pdf_assets))
 
 """Fill NaNs"""
 pdf_assets.loc[:, ['AssetSpouseJointDep']].fillna('O', inplace=True)
+pdf_assets.loc[pdf_assets['AssetSpouseJointDep'] == ' ', ['AssetSpouseJointDep']] = 'O'
 
+print(pdf_assets['AssetSpouseJointDep'].unique())
 
 print(pdf_assets.isnull().sum())
 
@@ -62,7 +64,7 @@ print(pdf_assets.isnull().sum())
 pdf_assets.dropna(axis=0, how='any', inplace=True,
                   subset=['ID', 'Chamber', 'CID', 'CalendarYear', 'ReportType',
                           'AssetSource', 'AssetValue'])
-print(len(pdf_assets))
+# print(len(pdf_assets))
 
 """Map AssetValue Codes"""
 pdf_assets = pdf_assets.merge(LU_asset_value, how="left", on=['Chamber', 'AssetValue'])
@@ -77,23 +79,25 @@ print(pdf_assets.loc[:, "AssetName"].isnull().sum())
 pdf_assets.loc[pdf_assets['ReportType'] == 'H',['ReportType']] = 'N'
 
 
-"""Create table with only the most recent disclosure per year"""
-
-
+"""Create table with only the most recent disclosure per year and only personal assets"""
 report_order = pd.DataFrame({'ReportType': ['N', 'C', 'O', 'Y', 'A', 'T'],
                              'Report_Order': [1, 2, 3, 4, 5, 6]})
 pdf_assets = pdf_assets.merge(report_order, on=['ReportType'])
 min_report = pdf_assets.groupby(['CID', 'CalendarYear'])["Report_Order"].agg(min).reset_index()
 pdf_assets_final = pdf_assets.merge(min_report, on=['CID', 'CalendarYear', 'Report_Order'], how='inner')
+pdf_assets_final = pdf_assets_final.loc[pdf_assets_final['AssetSpouseJointDep'] == 'O']
 
 
 """CID Aggregate Infromation"""
 CID_groupby = pdf_assets_final.groupby(['CID', 'Chamber', 'CalendarYear'])
 assets_by_year = CID_groupby['AssetExactValue'].agg(sum).reset_index()
-asset_group_by_year = CID_groupby['Upper_Value', 'Lower_Value'].agg(sum).reset_index()
-print(assets_by_year[assets_by_year['AssetExactValue'] > 100000000].dropna())
+asset_group_by_year = CID_groupby['Upper_Value', 'Lower_Value'].agg(sum).reset_index().sort_values(
+    ['CalendarYear','Lower_Value', 'Upper_Value'], ascending=False)
 
-"""Rich Senators"""
+"""Example, 100 richest members of the government"""
+print(asset_group_by_year.iloc[0:100])
+
+"""Example: Rich Senators"""
 print(asset_group_by_year[
           (asset_group_by_year['CalendarYear'] == 12) &
           (asset_group_by_year['Chamber'] == 'S') &
