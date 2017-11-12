@@ -1,12 +1,9 @@
-import pandas as pd
-import networkx as nx
-import matplotlib.pyplot as plt
-import numpy
+def plotgraph(dataset, industry_name=None, save=False):
 
-
-def plotgraph(dataset, industry_name, save=False):
-
-    dataset_subset = pd.DataFrame(dataset.dropna().query('RealCode == @industry_name'))
+    if industry_name == None:
+        dataset_subset = pd.DataFrame(dataset.dropna())
+    else:
+        dataset_subset = pd.DataFrame(dataset.dropna().query('RealCode == @industry_name'))
 
     graph = nx.from_pandas_dataframe(dataset_subset, 'RealCode', 'CID', ['Amount', 'NumInvestments'])
 
@@ -63,13 +60,7 @@ def plotgraph(dataset, industry_name, save=False):
     nx.draw_networkx_edge_labels(graph, pos, edge_labels = edge_labels, font_size=12)
 
     # save the graph as a pdf
-    if save==True:
+    if save==True and industry_name != None:
         plt.savefig("%sgraph.pdf" % industry_name)
 
     return plt
-
-
-## example ##
-# use the format of industry_df
-# as used in the main python code
-# plotgraph(industry_df,'A2000')
