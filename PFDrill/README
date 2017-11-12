@@ -1,0 +1,19 @@
+PFDril - Shiny App
+Hafiz Ahsan (aha2140@columbia.edu, hafizahsan@gmail.com)
+
+What is it?
+
+A Proof-of-Concept web app that allows you to drill down into personal financial disclosures.
+Writen in Shiny/R
+
+
+What can it do?
+- Show a heatmap by year and Congressional candiate ID
+- Show detailed transaction when a candidate is selected
+
+How can it be extended?
+- Make it connect to database and not load static csv.gz files
+- Allow downloading data
+- Show a scatterplot 
+
+
