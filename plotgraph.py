@@ -63,6 +63,8 @@ def plotgraph(dataset, industry_name):
     nx.draw_networkx_edge_labels(graph, pos, edge_labels = edge_labels, font_size=12)
 
     # save the graph as a pdf
+    plt.savefig("%sgraph.pdf" % industry_name)
+    
     return plt
 
 
