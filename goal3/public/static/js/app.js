@@ -1,8 +1,8 @@
 
 var search = instantsearch({
   // Replace with your own values
-  appId: 'MMO9C5ZZD6',
-  apiKey: '521bc2336afc51528bd5a058bc7aefe2', // search only API key, no ADMIN key
+  appId: 'APPID',
+  apiKey: 'APPKEY', // search only API key, no ADMIN key
   indexName: 'master_disclosure',
   urlSync: true
 });
