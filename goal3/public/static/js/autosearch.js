@@ -1,4 +1,4 @@
-var client = algoliasearch("MMO9C5ZZD6", "521bc2336afc51528bd5a058bc7aefe2")
+var client = algoliasearch("APPID", "APPKEY")
 var master_disclosure = client.initIndex('master_disclosure');
 var bills = client.initIndex('bills');
 var members = client.initIndex('members');
