@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy
 
 
-def plotgraph(dataset, industry_name):
+def plotgraph(dataset, industry_name, save=False):
 
     dataset_subset = pd.DataFrame(dataset.dropna().query('RealCode == @industry_name'))
 
@@ -63,8 +63,9 @@ def plotgraph(dataset, industry_name):
     nx.draw_networkx_edge_labels(graph, pos, edge_labels = edge_labels, font_size=12)
 
     # save the graph as a pdf
-    plt.savefig("%sgraph.pdf" % industry_name)
-    
+    if save==True:
+        plt.savefig("%sgraph.pdf" % industry_name)
+
     return plt
 
 
