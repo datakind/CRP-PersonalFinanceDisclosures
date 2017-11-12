@@ -1,3 +1,0 @@
-Flask==0.12
-algoliasearch
-python-dotenv==0.7.1

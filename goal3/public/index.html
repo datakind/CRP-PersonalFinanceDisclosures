@@ -7,16 +7,16 @@
 
     <title>Center for Responsive Politics, Personal Finance Disclosures </title>
 
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
-    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="static/css/main.css" rel="stylesheet">
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
       <a class="navbar-brand" href="#">
-        <img src="../static/img/OP-logo.png" alt="">
+        <img src="static/img/OP-logo.png" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,8 +40,7 @@
         </div>
       </div>
 
-      <div id="hits">
-      </div>
+      <div id="hits"></div>
       <div id="pagination"></div>
 
 
@@ -53,12 +52,21 @@
 
     </footer>
 
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="static/js/jquery-3.2.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="../static/js/jquery-3.2.1.min.js"><\/script>')</script>
-    <script src="../static/js/popper.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script src="../static/js/app.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script type="text/html" id="hit-template">
+      <div class="hit">
+        <div class="hit-content">
+          <h2 class="hit-name">{{{_highlightResult.Orgname.value}}}</h2>
+          <p class="hit-description">Organization</p>
+        </div>
+      </div>
+    </script>
+    <script src="static/js/app.js"></script>
+
   </body>
 </html>
+
