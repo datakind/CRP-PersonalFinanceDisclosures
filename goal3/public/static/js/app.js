@@ -1,11 +1,18 @@
 
 var search = instantsearch({
   // Replace with your own values
-  appId: 'APPID',
-  apiKey: 'APIKEY', // search only API key, no ADMIN key
+  appId: 'MMO9C5ZZD6',
+  apiKey: '521bc2336afc51528bd5a058bc7aefe2', // search only API key, no ADMIN key
   indexName: 'master_disclosure',
   urlSync: true
 });
+
+search.addWidget(
+  instantsearch.widgets.stats({
+    container: '#stats'
+  })
+);
+
 
 search.addWidget(
   instantsearch.widgets.searchBox({
@@ -16,6 +23,7 @@ search.addWidget(
 function searchValue() {
   return document.getElementById('search-input').value;
 }
+
 
 search.addWidget(
   instantsearch.widgets.hits({
@@ -28,6 +36,7 @@ search.addWidget(
   })
 );
 
+
 search.addWidget(
   instantsearch.widgets.pagination({
     container: '#pagination'
@@ -35,28 +44,3 @@ search.addWidget(
 );
 
 search.start();
-
-// var client = algoliasearch('APP_ID', 'APP_KEY');
-// var index = client.initIndex('master_disclosure');
-
-// // perform query "jim"
-// index.search('N00029391', searchCallback);
-
-// // the last optional argument can be used to add search parameters
-// index.search(
-//   'N00029391', {
-//     hitsPerPage: 5,
-//     facets: '*',
-//     maxValuesPerFacet: 10
-//   },
-//   searchCallback
-// );
-
-// function searchCallback(err, content) {
-//   if (err) {
-//     console.error(err);
-//     return;
-//   }
-
-//   console.log(content);
-// }

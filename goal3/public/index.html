@@ -25,21 +25,24 @@
     </nav>
 
     <main role="main">
-
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container text-center">
           <h1 class="heading">Personal Finance Disclosures</h1>
 
             <form class="form-inline search-box">
-              <input id="search-input" class="form-control col-lg-8 col-sm-8" type="text" placeholder="Search" aria-label="Search">
+                
+              
+                    <input id="search-input" class="form-control col-lg-8 col-sm-8 aa-input-search" type="text" placeholder="Search" aria-label="Search">
+                
               <button class="btn btn-outline-success col-lg-4 col-sm-4" type="submit">Search</button>
           </form>
 
 
         </div>
       </div>
-
+      <div id="stats"></div>
+      
       <div id="hits"></div>
       <div id="pagination"></div>
 
@@ -56,16 +59,23 @@
     <script>window.jQuery || document.write('<script src="../static/js/jquery-3.2.1.min.js"><\/script>')</script>
     <script src="static/js/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script type="text/html" id="hit-template">
       <div class="hit">
         <div class="hit-content">
-          <h2 class="hit-name">{{{_highlightResult.Orgname.value}}}</h2>
+          <h3 class="hit-name">{{{_highlightResult.Orgname.value}}}</h3>
           <p class="hit-description">Organization</p>
+          <p class="hit-description">CID: {{{_highlightResult.CID.value}}}</p>
+          <p class="hit-description">Calander Year: {{{_highlightResult.CalendarYear.value}}}</p>
+          <p class="hit-description">Schedule: {{{_highlightResult.Schedule.value}}}</p>
+          <p class="hit-description">Amount: {{{_highlightResult.AmountText.value}}}</p>
         </div>
       </div>
     </script>
     <script src="static/js/app.js"></script>
+    <script src="static/js/autosearch.js"></script>
 
   </body>
 </html>
